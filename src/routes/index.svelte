@@ -1,50 +1,89 @@
-<script>
-	import successkid from 'images/successkid.jpg';
-</script>
+<script></script>
 
 <style>
-	h1, figure, p {
-		text-align: center;
+	* {
 		margin: 0 auto;
 	}
 
+	section:not(:last-child) {
+		margin-bottom: 4em;
+	}
+
 	h1 {
+		margin: 0.5em 0;
 		font-size: 2.8em;
-		text-transform: uppercase;
 		font-weight: 700;
-		margin: 0 0 0.5em 0;
+		text-align: center;
+		text-transform: uppercase;
 	}
 
-	figure {
-		margin: 0 0 1em 0;
+	form {
+		width: 50%;
 	}
 
-	img {
+	input:not([type="checkbox"]) {
+		display: block;
 		width: 100%;
-		max-width: 400px;
-		margin: 0 0 1em 0;
+		margin-bottom: 0.25em;
+		padding: 0.5em;
+		border-radius: 0.5em;
+		border: 1px #999 solid;
 	}
 
-	p {
-		margin: 1em auto;
+	label {
+		display: block;
 	}
 
-	@media (min-width: 480px) {
-		h1 {
-			font-size: 4em;
-		}
+	button {
+		width: 100%;
+		margin-top: 1em;
+		padding: 0.5em;
+		border-radius: 0.25em;
+		border: 2px rgb(255,62,0) solid;
+		background-color: rgba(255,62,0,0.1);
+		color: rgb(255,62,0);
+		font-size: medium;
+		transition: background-color 0.1s ease-in-out;
 	}
+
+	button:hover {
+		background-color: rgba(255,62,0,0.2);
+		cursor: pointer;
+	}
+
 </style>
 
 <svelte:head>
-	<title>Sapper project template</title>
+	<title>Sapper Supabase Auth</title>
 </svelte:head>
 
-<h1>Great success!</h1>
+<section>
+	<h1>Sign in</h1>
+	
+	<form>
+		<input id="email" type="email" placeholder="Email address">
+		<input id="password" type="password" placeholder="Password">
+		<label for="remember">
+			<input id="remember" type="checkbox">
+			Remember me
+		</label>
+		<button type="submit">Sign in</button>
+	</form>
+</section>
 
-<figure>
-	<img alt="Success Kid" src="{successkid}">
-	<figcaption>Have fun with Sapper!</figcaption>
-</figure>
+<hr>
 
-<p><strong>Try editing this file (src/routes/index.svelte) to test live reloading.</strong></p>
+<section>
+	<h1>Sign up</h1>
+	
+	<form>
+		<input id="email" type="email" placeholder="Email address">
+		<input id="password" type="password" placeholder="Password">
+		<input id="verify-password" type="password" placeholder="Verify password">
+		<label for="remember">
+			<input id="remember" type="checkbox">
+			Remember me
+		</label>
+		<button type="submit">Sign up</button>
+	</form>
+</section>
