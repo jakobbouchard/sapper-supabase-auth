@@ -10,7 +10,11 @@ express()
 	.use(
 		compression({ threshold: 0 }),
 		sirv('static', { dev }),
-		sapper.middleware()
+		sapper.middleware({
+			session: async (req, res) => {
+				return { userToken: false };
+			}
+		})
 	)
 	.listen(PORT, err => {
 		if (err) console.log('error', err);

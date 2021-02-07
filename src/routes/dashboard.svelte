@@ -1,4 +1,11 @@
-<script context="module"></script>
+<script context="module">
+	export async function preload(page, session) {
+		let { userToken } = session;
+		if (!userToken) return this.redirect(302, '/');
+		return userToken;
+	}
+</script>
+
 <script></script>
 
 <style>
