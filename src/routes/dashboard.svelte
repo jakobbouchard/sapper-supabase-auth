@@ -6,7 +6,18 @@
 	}
 </script>
 
-<script></script>
+<script>
+async function signOut() {
+	const authAPI = await fetch('/api/signout', {
+		method: 'POST',
+		credentials: 'same-origin',
+	});
+	const { success } = await authAPI.json();
+	if (success) {
+		window.location.href = '/';
+	}
+}
+</script>
 
 <style>
 	* {
@@ -41,4 +52,4 @@
 
 <h1>Our very cool dashboard</h1>
 
-<button>Sign out</button>
+<button on:click="{ signOut }">Sign out</button>
