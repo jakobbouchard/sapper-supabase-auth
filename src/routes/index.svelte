@@ -1,4 +1,27 @@
-<script></script>
+<script>
+
+async function authenticate(event, authType) {
+	const { email, password, remember } = event.target.elements;
+
+	const authAPI = await fetch('/api/auth', {
+		method: 'POST',
+		credentials: 'same-origin',
+		body: JSON.stringify({
+			email: email.value,
+			password: password.value,
+			remember: remember.checked,
+			authType: authType
+		}),
+		headers: {
+			'Content-Type': 'application/json'
+		}
+	});
+	const { success } = await authAPI.json();
+	if (success) {
+		window.location.href = '/dashboard';
+	}
+}
+</script>
 
 <style>
 	* {
@@ -60,7 +83,7 @@
 <section>
 	<h1>Sign in</h1>
 	
-	<form>
+	<form on:submit|preventDefault={ (e) => authenticate(e, 'signin') } >
 		<input id="email" type="email" placeholder="Email address">
 		<input id="password" type="password" placeholder="Password">
 		<label for="remember">
@@ -76,10 +99,9 @@
 <section>
 	<h1>Sign up</h1>
 	
-	<form>
+	<form on:submit|preventDefault={ (e) => authenticate(e, 'signup') } >
 		<input id="email" type="email" placeholder="Email address">
 		<input id="password" type="password" placeholder="Password">
-		<input id="verify-password" type="password" placeholder="Verify password">
 		<label for="remember">
 			<input id="remember" type="checkbox">
 			Remember me
